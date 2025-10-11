@@ -1,0 +1,58 @@
+niche: celebrity_rumors
+description: "Entertainment rumors vs verified reporting"
+rate_limit_per_domain_per_min: 3
+max_per_source: 1500
+positive_label: rumor
+negative_label: verified
+
+positive_domains:
+  - tmz.com
+  - pagesix.com
+  - radaronline.com
+  - the-sun.com
+  - justjared.com
+  - gossipcop.com
+  - perezhilton.com
+  - hollywoodlife.com
+  - blindgossip.com
+  - celebitchy.com
+
+negative_domains:
+  - apnews.com
+  - variety.com
+  - hollywoodreporter.com
+  - rollingstone.com
+  - ew.com
+  - people.com
+  - deadline.com
+  - reuters.com
+  - nbcnews.com
+  - cnn.com
+
+positive_phrases:
+  - "allegedly"
+  - "insider says"
+  - "spotted with"
+  - "leak"
+  - "confirmed?"
+  - "rumor has it"
+  - "sources claim"
+  - "according to insiders"
+  - "word on the street"
+  - "blind item"
+
+negative_phrases:
+  - "press release"
+  - "official statement"
+  - "representative said"
+  - "confirmed by"
+  - "studio announced"
+  - "official confirmation"
+  - "verified report"
+  - "official source"
+  - "confirmed by spokesperson"
+  - "official announcement"
+
+min_samples_per_class: 300
+max_text_length: 1500
+min_text_length: 30

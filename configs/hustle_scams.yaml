@@ -1,0 +1,57 @@
+niche: hustle_scams
+description: "Get rich quick / hustle scams vs legitimate guidance"
+rate_limit_per_domain_per_min: 3
+max_per_source: 1500
+positive_label: scam
+negative_label: legit
+
+positive_domains:
+  - hustlersuniversity.com
+  - bizoppsdaily.com
+  - make-money-online.com
+  - getrichquicktips.com
+  - moneytwitter.com
+  - dropshiphackers.com
+  - passiveincomehacks.net
+  - crypto-fastcash.com
+  - secretmethod.biz
+
+negative_domains:
+  - irs.gov
+  - ftc.gov
+  - sec.gov
+  - investor.gov
+  - consumerfinance.gov
+  - nytimes.com
+  - bloomberg.com
+  - wsj.com
+  - reuters.com
+  - forbes.com
+
+positive_phrases:
+  - "$10k/day"
+  - "zero risk"
+  - "secret method"
+  - "DM to join"
+  - "limited spots"
+  - "financial freedom in 30 days"
+  - "guaranteed returns"
+  - "make money while you sleep"
+  - "passive income hack"
+  - "get rich quick"
+
+negative_phrases:
+  - "risk disclosure"
+  - "fiduciary"
+  - "regulator"
+  - "SEC filing"
+  - "Form 10-K"
+  - "advisory"
+  - "investment risk"
+  - "past performance"
+  - "due diligence"
+  - "regulatory compliance"
+
+min_samples_per_class: 300
+max_text_length: 2000
+min_text_length: 50

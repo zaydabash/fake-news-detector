@@ -1,0 +1,56 @@
+niche: campus_rumor
+description: "Campus rumors vs official updates"
+rate_limit_per_domain_per_min: 3
+max_per_source: 1500
+positive_label: rumor
+negative_label: official
+
+positive_domains:
+  - collegeconfidential.com
+  - reddit.com/r/college
+  - studentsubreddit.com
+  - campusgossip.com
+  - studentrumors.net
+  - collegewhispers.com
+  - campusbuzz.com
+  - studentlife.com
+
+negative_domains:
+  - harvard.edu
+  - mit.edu
+  - stanford.edu
+  - berkeley.edu
+  - yale.edu
+  - princeton.edu
+  - columbia.edu
+  - upenn.edu
+  - brown.edu
+  - dartmouth.edu
+
+positive_phrases:
+  - "heard from"
+  - "rumor has it"
+  - "word is"
+  - "apparently"
+  - "supposedly"
+  - "allegedly"
+  - "insider says"
+  - "friend told me"
+  - "everyone's saying"
+  - "campus buzz"
+
+negative_phrases:
+  - "official announcement"
+  - "university statement"
+  - "confirmed by"
+  - "press release"
+  - "official update"
+  - "university policy"
+  - "official source"
+  - "verified information"
+  - "official communication"
+  - "university confirmed"
+
+min_samples_per_class: 300
+max_text_length: 1500
+min_text_length: 30

@@ -1,0 +1,81 @@
+{
+  "niche": "climate_claims",
+  "timestamp": "2025-10-10T18:27:51.410014",
+  "best_model": "logistic_regression",
+  "config": {
+    "niche": "climate_claims",
+    "description": "Climate hype/denial vs scientific reporting",
+    "rate_limit_per_domain_per_min": 6,
+    "max_per_source": 200,
+    "timeout_seconds": 8,
+    "workers": 8,
+    "since": "2024-01-01",
+    "positive_label": "claim",
+    "negative_label": "scientific",
+    "positive_domains": [
+      "wattsupwiththat.com",
+      "climatedepot.com",
+      "iceagenow.info",
+      "climatechangereconsidered.org",
+      "climate.news",
+      "notrickszone.com",
+      "thegwpf.org",
+      "climatehoax.news"
+    ],
+    "negative_domains": [
+      "ipcc.ch",
+      "noaa.gov",
+      "climate.nasa.gov",
+      "nature.com",
+      "washingtonpost.com",
+      "reuters.com",
+      "nytimes.com",
+      "scientificamerican.com",
+      "nationalgeographic.com",
+      "carbonbrief.org"
+    ],
+    "positive_phrases": [
+      "hoax",
+      "climate scam",
+      "ice age next year",
+      "cities underwater",
+      "climate lockdown",
+      "global warming hoax",
+      "climate change scam",
+      "weather manipulation",
+      "climate conspiracy",
+      "fake science"
+    ],
+    "negative_phrases": [
+      "IPCC",
+      "radiative forcing",
+      "anomaly",
+      "confidence interval",
+      "peer-reviewed",
+      "methodology",
+      "carbon emissions",
+      "greenhouse gas",
+      "temperature rise",
+      "climate model"
+    ],
+    "min_samples_per_class": 20,
+    "max_text_length": 2000,
+    "min_text_length": 50
+  },
+  "models": {
+    "logistic_regression": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LogisticRegression"
+    },
+    "svm": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LinearSVM"
+    }
+  }
+}

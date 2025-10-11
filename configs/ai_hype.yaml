@@ -1,0 +1,54 @@
+niche: ai_hype
+description: "AI hype vs sober reporting"
+rate_limit_per_domain_per_min: 2
+max_per_source: 1200
+positive_label: hype
+negative_label: sober
+
+positive_domains:
+  - futurism.com
+  - singularityhub.com
+  - ai-news.com
+  - techcrunch.com/ai
+  - venturebeat.com/ai
+  - theverge.com/ai
+  - wired.com/ai
+  - techradar.com/ai
+
+negative_domains:
+  - nature.com
+  - arxiv.org
+  - openai.com
+  - deepmind.com
+  - mit.edu
+  - stanford.edu
+  - berkeley.edu
+  - csail.mit.edu
+
+positive_phrases:
+  - "breakthrough"
+  - "revolutionary"
+  - "game-changing"
+  - "world-changing"
+  - "unprecedented"
+  - "mind-blowing"
+  - "incredible"
+  - "amazing"
+  - "stunning"
+  - "shocking"
+
+negative_phrases:
+  - "study shows"
+  - "research indicates"
+  - "according to data"
+  - "peer-reviewed"
+  - "methodology"
+  - "limitations"
+  - "further research needed"
+  - "preliminary results"
+  - "controlled study"
+  - "statistical significance"
+
+min_samples_per_class: 300
+max_text_length: 2000
+min_text_length: 50
