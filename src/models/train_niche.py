@@ -122,18 +122,6 @@ class NicheModelTrainer:
                     X_val: np.ndarray, y_val: np.ndarray) -> None:
         """Train multiple models for the niche."""
         
-        # Create feature extractor (adjusted for small datasets)
-        self.vectorizer = TFIDFFeatureExtractor(
-            max_features=1000,
-            ngram_range=(1, 2),
-            min_df=1
-        )
-        
-        # Fit vectorizer
-        train_texts = pd.Series([f"dummy_{i}" for i in range(X_train.shape[0])])
-        train_labels = pd.Series(y_train)
-        self.vectorizer.fit(train_texts, train_labels)
-        
         # Train Logistic Regression
         self._train_logistic_regression(X_train, y_train, X_val, y_val)
         
@@ -322,8 +310,8 @@ def train_niche_model(niche: str) -> Dict[str, Any]:
     # Split data
     train_df, val_df, test_df = split_niche_data(df)
     
-    # Create TF-IDF features (adjusted for small datasets)
-    vectorizer = TFIDFFeatureExtractor(max_features=1000, ngram_range=(1, 2), min_df=1)
+    # Create TF-IDF features (production settings)
+    vectorizer = TFIDFFeatureExtractor(max_features=10000, ngram_range=(1, 2), min_df=2)
     
     X_train, y_train = vectorizer.fit_transform(train_df['text_processed'], train_df['label'])
     X_val, y_val = vectorizer.transform(val_df['text_processed'], val_df['label'])

@@ -2,8 +2,8 @@ niche: medical_claims
 description: "Medical misinformation vs evidence-based reporting"
 rate_limit_per_domain_per_min: 2
 max_per_source: 1200
-positive_label: misinformation
-negative_label: evidence_based
+positive_label: claim
+negative_label: evidence
 
 positive_domains:
   - naturalnews.com
@@ -51,6 +51,6 @@ negative_phrases:
   - "clinical evidence"
   - "scientific consensus"
 
-min_samples_per_class: 300
+min_samples_per_class: 50  # Lower for demo
 max_text_length: 2000
 min_text_length: 50

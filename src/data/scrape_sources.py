@@ -8,12 +8,14 @@ from pathlib import Path
 from typing import List, Dict, Any
 from urllib.parse import urljoin, urlparse
 import re
+from datetime import datetime, timedelta
 
 import pandas as pd
 from bs4 import BeautifulSoup
 from newspaper import Article
 from tqdm import tqdm
 import argparse
+import feedparser
 
 from src.utils.logging import get_logger
 
@@ -138,6 +140,53 @@ class WebScraper:
                 return False
         
         return True
+    
+    def scrape_rss_feed(self, feed_url: str, max_articles: int = 100) -> List[Dict[str, Any]]:
+        """Scrape articles from an RSS feed."""
+        try:
+            logger.info(f"Scraping RSS feed: {feed_url}")
+            
+            # Parse RSS feed
+            feed = feedparser.parse(feed_url)
+            
+            articles = []
+            for entry in feed.entries[:max_articles]:
+                try:
+                    # Get article URL
+                    article_url = entry.link
+                    
+                    # Check if article is recent enough
+                    since_date = datetime.now() - timedelta(days=365)  # Last year
+                    if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                        pub_date = datetime(*entry.published_parsed[:6])
+                        if pub_date < since_date:
+                            continue
+                    
+                    # Scrape the article
+                    result = self.scrape_url(article_url)
+                    if result['success']:
+                        articles.append({
+                            'url': result['url'],
+                            'title': result['title'],
+                            'text': result['text'],
+                            'source': result['source'],
+                            'published': entry.get('published', ''),
+                            'summary': entry.get('summary', '')[:200]
+                        })
+                        
+                        # Rate limiting
+                        time.sleep(self.rate_limit)
+                        
+                except Exception as e:
+                    logger.warning(f"Failed to process RSS entry: {e}")
+                    continue
+            
+            logger.info(f"Scraped {len(articles)} articles from RSS feed")
+            return articles
+            
+        except Exception as e:
+            logger.error(f"Failed to scrape RSS feed {feed_url}: {e}")
+            return []
 
 
 def load_niche_config(niche: str) -> Dict[str, Any]:

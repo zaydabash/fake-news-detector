@@ -51,6 +51,6 @@ negative_phrases:
   - "official communication"
   - "university confirmed"
 
-min_samples_per_class: 300
+min_samples_per_class: 50  # Lower for demo
 max_text_length: 1500
 min_text_length: 30

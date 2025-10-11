@@ -1,0 +1,78 @@
+{
+  "niche": "medical_claims",
+  "timestamp": "2025-10-10T19:13:06.728304",
+  "best_model": "logistic_regression",
+  "config": {
+    "niche": "medical_claims",
+    "description": "Medical misinformation vs evidence-based reporting",
+    "rate_limit_per_domain_per_min": 2,
+    "max_per_source": 1200,
+    "positive_label": "claim",
+    "negative_label": "evidence",
+    "positive_domains": [
+      "naturalnews.com",
+      "mercola.com",
+      "greenmedinfo.com",
+      "healthimpactnews.com",
+      "thetruthaboutcancer.com",
+      "drmercola.com",
+      "naturalhealth365.com",
+      "healthfreedomusa.org"
+    ],
+    "negative_domains": [
+      "nih.gov",
+      "cdc.gov",
+      "who.int",
+      "nejm.org",
+      "thelancet.com",
+      "bmj.com",
+      "nature.com/medicine",
+      "sciencedirect.com",
+      "pubmed.ncbi.nlm.nih.gov",
+      "mayoclinic.org"
+    ],
+    "positive_phrases": [
+      "big pharma",
+      "cover-up",
+      "conspiracy",
+      "natural cure",
+      "miracle treatment",
+      "doctors don't want you to know",
+      "hidden truth",
+      "suppressed research",
+      "alternative medicine",
+      "holistic healing"
+    ],
+    "negative_phrases": [
+      "clinical trial",
+      "peer-reviewed study",
+      "randomized controlled trial",
+      "evidence-based",
+      "systematic review",
+      "meta-analysis",
+      "FDA approved",
+      "medical research",
+      "clinical evidence",
+      "scientific consensus"
+    ],
+    "min_samples_per_class": 50,
+    "max_text_length": 2000,
+    "min_text_length": 50
+  },
+  "models": {
+    "logistic_regression": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LogisticRegression"
+    },
+    "svm": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LinearSVM"
+    }
+  }
+}

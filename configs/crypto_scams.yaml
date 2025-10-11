@@ -3,7 +3,7 @@ description: "Cryptocurrency scams vs legitimate information"
 rate_limit_per_domain_per_min: 3
 max_per_source: 1500
 positive_label: scam
-negative_label: legitimate
+negative_label: legit
 
 positive_domains:
   - cryptopump.com
@@ -51,6 +51,6 @@ negative_phrases:
   - "past performance"
   - "market conditions"
 
-min_samples_per_class: 300
+min_samples_per_class: 50  # Lower for demo
 max_text_length: 1500
 min_text_length: 50

@@ -1,0 +1,21 @@
+{
+  "niche": "climate_claims",
+  "samples_per_class": {
+    "claim": 350,
+    "scientific": 350
+  },
+  "test_macro_f1": 1.0,
+  "test_accuracy": 1.0,
+  "per_class": {
+    "claim": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "scientific": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}

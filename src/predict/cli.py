@@ -124,13 +124,13 @@ def display_prediction(result: dict, text: str) -> None:
     
     if result['prediction'] == 'Real':
         color = "green"
-        emoji = "✅"
+        emoji = "✓"
     elif result['prediction'] == 'Fake':
         color = "red"
-        emoji = "❌"
+        emoji = "✗"
     else:
         color = "yellow"
-        emoji = "⚠️"
+        emoji = "?"
     
     # Main prediction panel
     panel = Panel(

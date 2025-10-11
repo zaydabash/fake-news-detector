@@ -1,0 +1,78 @@
+{
+  "niche": "campus_rumor",
+  "timestamp": "2025-10-10T19:11:47.463918",
+  "best_model": "logistic_regression",
+  "config": {
+    "niche": "campus_rumor",
+    "description": "Campus rumors vs official updates",
+    "rate_limit_per_domain_per_min": 3,
+    "max_per_source": 1500,
+    "positive_label": "rumor",
+    "negative_label": "official",
+    "positive_domains": [
+      "collegeconfidential.com",
+      "reddit.com/r/college",
+      "studentsubreddit.com",
+      "campusgossip.com",
+      "studentrumors.net",
+      "collegewhispers.com",
+      "campusbuzz.com",
+      "studentlife.com"
+    ],
+    "negative_domains": [
+      "harvard.edu",
+      "mit.edu",
+      "stanford.edu",
+      "berkeley.edu",
+      "yale.edu",
+      "princeton.edu",
+      "columbia.edu",
+      "upenn.edu",
+      "brown.edu",
+      "dartmouth.edu"
+    ],
+    "positive_phrases": [
+      "heard from",
+      "rumor has it",
+      "word is",
+      "apparently",
+      "supposedly",
+      "allegedly",
+      "insider says",
+      "friend told me",
+      "everyone's saying",
+      "campus buzz"
+    ],
+    "negative_phrases": [
+      "official announcement",
+      "university statement",
+      "confirmed by",
+      "press release",
+      "official update",
+      "university policy",
+      "official source",
+      "verified information",
+      "official communication",
+      "university confirmed"
+    ],
+    "min_samples_per_class": 50,
+    "max_text_length": 1500,
+    "min_text_length": 30
+  },
+  "models": {
+    "logistic_regression": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LogisticRegression"
+    },
+    "svm": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LinearSVM"
+    }
+  }
+}

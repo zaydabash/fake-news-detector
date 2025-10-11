@@ -1,0 +1,21 @@
+{
+  "niche": "celebrity_rumors",
+  "samples_per_class": {
+    "rumor": 350,
+    "verified": 350
+  },
+  "test_macro_f1": 1.0,
+  "test_accuracy": 1.0,
+  "per_class": {
+    "rumor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "verified": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}

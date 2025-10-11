@@ -1,0 +1,76 @@
+{
+  "niche": "ai_hype",
+  "timestamp": "2025-10-10T19:10:32.942317",
+  "best_model": "logistic_regression",
+  "config": {
+    "niche": "ai_hype",
+    "description": "AI hype vs sober reporting",
+    "rate_limit_per_domain_per_min": 2,
+    "max_per_source": 1200,
+    "positive_label": "hype",
+    "negative_label": "technical",
+    "positive_domains": [
+      "futurism.com",
+      "singularityhub.com",
+      "ai-news.com",
+      "techcrunch.com/ai",
+      "venturebeat.com/ai",
+      "theverge.com/ai",
+      "wired.com/ai",
+      "techradar.com/ai"
+    ],
+    "negative_domains": [
+      "nature.com",
+      "arxiv.org",
+      "openai.com",
+      "deepmind.com",
+      "mit.edu",
+      "stanford.edu",
+      "berkeley.edu",
+      "csail.mit.edu"
+    ],
+    "positive_phrases": [
+      "breakthrough",
+      "revolutionary",
+      "game-changing",
+      "world-changing",
+      "unprecedented",
+      "mind-blowing",
+      "incredible",
+      "amazing",
+      "stunning",
+      "shocking"
+    ],
+    "negative_phrases": [
+      "study shows",
+      "research indicates",
+      "according to data",
+      "peer-reviewed",
+      "methodology",
+      "limitations",
+      "further research needed",
+      "preliminary results",
+      "controlled study",
+      "statistical significance"
+    ],
+    "min_samples_per_class": 50,
+    "max_text_length": 2000,
+    "min_text_length": 50
+  },
+  "models": {
+    "logistic_regression": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LogisticRegression"
+    },
+    "svm": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LinearSVM"
+    }
+  }
+}

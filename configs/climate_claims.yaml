@@ -1,15 +1,33 @@
 niche: climate_claims
 description: "Climate hype/denial vs scientific reporting"
 rate_limit_per_domain_per_min: 6
-max_per_source: 200
+max_per_source: 120
 timeout_seconds: 8
 workers: 8
 since: "2024-01-01"
+rss_only: true
 positive_label: claim
 negative_label: scientific
 
+# Fast RSS feeds only (avoiding slow domains)
+rss_feeds:
+  # scientific (negative class)
+  - https://www.carbonbrief.org/feed/
+  - https://climate.nasa.gov/news/feed/
+  - https://www.noaa.gov/tags/climate/rss.xml
+  - https://www.nature.com/subjects/climate-change.rss
+  - https://www.reuters.com/business/environment/feed/
+  - https://feeds.washingtonpost.com/rss/world/climate-change
+  # claim/denial (positive class)
+  - https://notrickszone.com/feed/
+  - https://climatedepot.com/feed/
+  - https://climate.news/feed/
+  - https://iceagenow.info/feed/
+  - https://climatechangereconsidered.org/feed/
+
+# Temporarily disabled slow domains
 positive_domains:
-  - wattsupwiththat.com
+  # - wattsupwiththat.com  # Commented out - too slow
   - climatedepot.com
   - iceagenow.info
   - climatechangereconsidered.org
@@ -54,6 +72,12 @@ negative_phrases:
   - "temperature rise"
   - "climate model"
 
-min_samples_per_class: 20
+min_samples_per_class: 300
+rate_limit_per_domain_per_min: 6
+max_per_source: 150
+timeout_seconds: 8
+workers: 8
+since: "2024-01-01"
+rss_only: true
 max_text_length: 2000
 min_text_length: 50

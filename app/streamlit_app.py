@@ -23,7 +23,6 @@ logger = get_logger(__name__)
 # Page config
 st.set_page_config(
     page_title="Fake News Detector",
-    page_icon="🔍",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -129,15 +128,15 @@ def display_prediction_result(result, text):
     """Display prediction results."""
     if result['prediction'] == 'Real':
         prediction_class = "real-prediction"
-        emoji = "✅"
+        emoji = "✓"
         title = "Real News Detected"
     elif result['prediction'] == 'Fake':
         prediction_class = "fake-prediction"
-        emoji = "❌"
+        emoji = "✗"
         title = "Fake News Detected"
     else:
         prediction_class = "fake-prediction"
-        emoji = "⚠️"
+        emoji = "?"
         title = "Unable to Classify"
     
     # Main prediction display
@@ -188,7 +187,7 @@ def display_prediction_result(result, text):
 def main():
     """Main Streamlit application."""
     # Header
-    st.markdown('<h1 class="main-header">🔍 Multi-Niche Fake News Detector</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">Multi-Niche Fake News Detector</h1>', unsafe_allow_html=True)
     
     # Get available niches
     niches = get_available_niches()
@@ -215,7 +214,7 @@ def main():
     
     # Check if model is trained
     if not is_model_trained(selected_niche):
-        st.sidebar.warning(f"⚠️ Model not trained for {selected_niche}")
+        st.sidebar.warning(f"Model not trained for {selected_niche}")
         
         if st.sidebar.button("Train Model Now", type="primary"):
             with st.spinner(f"Training model for {selected_niche}..."):
@@ -241,7 +240,7 @@ def main():
     """)
     
     # Main content
-    tab1, tab2 = st.tabs(["📝 Single Text", "📊 Batch Analysis"])
+    tab1, tab2 = st.tabs(["Single Text", "Batch Analysis"])
     
     with tab1:
         st.header("Analyze Single Text")

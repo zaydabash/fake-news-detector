@@ -3,7 +3,7 @@ description: "AI hype vs sober reporting"
 rate_limit_per_domain_per_min: 2
 max_per_source: 1200
 positive_label: hype
-negative_label: sober
+negative_label: technical
 
 positive_domains:
   - futurism.com
@@ -49,6 +49,6 @@ negative_phrases:
   - "controlled study"
   - "statistical significance"
 
-min_samples_per_class: 300
+min_samples_per_class: 50  # Lower for demo
 max_text_length: 2000
 min_text_length: 50

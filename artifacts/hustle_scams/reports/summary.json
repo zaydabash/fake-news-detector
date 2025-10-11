@@ -1,0 +1,21 @@
+{
+  "niche": "hustle_scams",
+  "samples_per_class": {
+    "scam": 350,
+    "legit": 350
+  },
+  "test_macro_f1": 1.0,
+  "test_accuracy": 1.0,
+  "per_class": {
+    "scam": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "legit": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}

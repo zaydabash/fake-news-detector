@@ -53,5 +53,11 @@ negative_phrases:
   - "regulatory compliance"
 
 min_samples_per_class: 300
+rate_limit_per_domain_per_min: 6
+max_per_source: 150
+timeout_seconds: 8
+workers: 8
+since: "2024-01-01"
+rss_only: true
 max_text_length: 2000
 min_text_length: 50

@@ -1,0 +1,78 @@
+{
+  "niche": "crypto_scams",
+  "timestamp": "2025-10-10T19:13:13.939578",
+  "best_model": "logistic_regression",
+  "config": {
+    "niche": "crypto_scams",
+    "description": "Cryptocurrency scams vs legitimate information",
+    "rate_limit_per_domain_per_min": 3,
+    "max_per_source": 1500,
+    "positive_label": "scam",
+    "negative_label": "legit",
+    "positive_domains": [
+      "cryptopump.com",
+      "mooncoin.com",
+      "getrichcrypto.com",
+      "crypto-moon.com",
+      "pumpanddump.crypto",
+      "cryptogetrich.com",
+      "mooningcrypto.com",
+      "cryptopump.net"
+    ],
+    "negative_domains": [
+      "coinbase.com",
+      "binance.com",
+      "kraken.com",
+      "coinmarketcap.com",
+      "coindesk.com",
+      "cointelegraph.com",
+      "blockchain.com",
+      "ethereum.org",
+      "bitcoin.org",
+      "sec.gov"
+    ],
+    "positive_phrases": [
+      "guaranteed returns",
+      "100x gains",
+      "moon soon",
+      "pump and dump",
+      "get rich quick",
+      "limited time offer",
+      "exclusive opportunity",
+      "secret strategy",
+      "insider trading",
+      "zero risk"
+    ],
+    "negative_phrases": [
+      "investment risk",
+      "volatility",
+      "regulatory compliance",
+      "due diligence",
+      "market analysis",
+      "technical analysis",
+      "fundamental analysis",
+      "risk disclosure",
+      "past performance",
+      "market conditions"
+    ],
+    "min_samples_per_class": 50,
+    "max_text_length": 1500,
+    "min_text_length": 50
+  },
+  "models": {
+    "logistic_regression": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LogisticRegression"
+    },
+    "svm": {
+      "train_accuracy": 1.0,
+      "val_accuracy": 1.0,
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "model_name": "LinearSVM"
+    }
+  }
+}
