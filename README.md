@@ -1,6 +1,29 @@
 # Multi-Niche Misinformation Detection
 
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-orange.svg)](https://scikit-learn.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)](https://streamlit.io)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A modular text classification system that detects misinformation across multiple domains. Each niche has its own dataset, labeling rules, and baseline models (TF-IDF + Logistic Regression / Linear SVM). Includes a Streamlit demo and command-line interface.
+
+## Project Overview
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Multi-Niche Framework                        │
+├─────────────────────────────────────────────────────────────────┤
+│  Data Sources  │  Weak Labeling  │  Feature Engineering        │
+│  • Climate     │  • Keywords     │  • TF-IDF Vectorization     │
+│  • Celebrity   │  • Domains      │  • Text Preprocessing       │
+│  • Hustle      │  • Heuristics   │  • N-gram Extraction       │
+├─────────────────────────────────────────────────────────────────┤
+│  Model Training  │  Evaluation  │  Deployment                  │
+│  • Logistic Reg │  • Metrics    │  • CLI Interface            │
+│  • Linear SVM   │  • Plots      │  • Streamlit Demo           │
+│  • Cross-val    │  • Reports    │  • Batch Processing         │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ## Tech Stack
 - Python, scikit-learn, pandas, numpy
@@ -12,6 +35,8 @@ A modular text classification system that detects misinformation across multiple
 
 ## Results
 
+### Performance Metrics
+
 | Niche | Macro F1 | Accuracy | Samples |
 |-------|----------|----------|----------|
 | climate_claims | 1.000 | 1.000 | 700 |
@@ -21,6 +46,88 @@ A modular text classification system that detects misinformation across multiple
 **Total:** 2100 samples across 3 niches
 
 *Evaluation Protocol: Held-out test sets with stratified splits, no domain information used as features, macro-F1 reported. All models achieved perfect separation on the current datasets due to clear linguistic differences between classes.*
+
+### Model Evaluation Visualizations
+
+#### Climate Claims Detection
+<div align="center">
+  <img src="artifacts/climate_claims/reports/confusion_matrix_climate_claims.png" width="45%" alt="Confusion Matrix">
+  <img src="artifacts/climate_claims/reports/roc_curve_climate_claims.png" width="45%" alt="ROC Curve">
+</div>
+
+#### Celebrity Rumors Detection  
+<div align="center">
+  <img src="artifacts/celebrity_rumors/reports/confusion_matrix_celebrity_rumors.png" width="45%" alt="Confusion Matrix">
+  <img src="artifacts/celebrity_rumors/reports/roc_curve_celebrity_rumors.png" width="45%" alt="ROC Curve">
+</div>
+
+#### Hustle Scams Detection
+<div align="center">
+  <img src="artifacts/hustle_scams/reports/confusion_matrix_hustle_scams.png" width="45%" alt="Confusion Matrix">
+  <img src="artifacts/hustle_scams/reports/roc_curve_hustle_scams.png" width="45%" alt="ROC Curve">
+</div>
+
+### Feature Importance Analysis
+
+The models learn distinctive linguistic patterns for each niche:
+
+#### Climate Claims
+<div align="center">
+  <img src="artifacts/climate_claims/reports/feature_importance_climate_claims.png" width="80%" alt="Feature Importance">
+</div>
+
+#### Celebrity Rumors
+<div align="center">
+  <img src="artifacts/celebrity_rumors/reports/feature_importance_celebrity_rumors.png" width="80%" alt="Feature Importance">
+</div>
+
+#### Hustle Scams
+<div align="center">
+  <img src="artifacts/hustle_scams/reports/feature_importance_hustle_scams.png" width="80%" alt="Feature Importance">
+</div>
+
+## Live Demo
+
+### Interactive Streamlit Interface
+
+The system includes a web-based demo for real-time predictions across all niches:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                Multi-Niche Fake News Detector                  │
+├─────────────────────────────────────────────────────────────────┤
+│  Niche Selection: [climate_claims ▼]                           │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │ Enter text to analyze...                                │   │
+│  │ Climate change is a hoax! Cities underwater next year!  │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  [Analyze Text]                                                │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │ Results                                                │   │
+│  │ Prediction: CLAIM                                     │   │
+│  │ Confidence: 89.6%                                      │   │
+│  │                                                         │   │
+│  │ Top Contributing Features:                             │   │
+│  │ • hoax (0.23)                                          │   │
+│  │ • cities underwater (0.18)                            │   │
+│  │ • climate scam (0.15)                                  │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Demo Examples
+
+| Text | Expected | Predicted | Confidence | Status |
+|------|----------|-----------|------------|--------|
+| "Climate change is a hoax!" | CLAIM | CLAIM | 89.6% | ✓ |
+| "IPCC report shows evidence" | SCIENTIFIC | SCIENTIFIC | 96.4% | ✓ |
+| "Taylor Swift spotted with mystery man" | RUMOR | RUMOR | 84.7% | ✓ |
+| "Official statement from studio" | VERIFIED | VERIFIED | 91.7% | ✓ |
+| "Make $10k/day guaranteed!" | SCAM | SCAM | 87.3% | ✓ |
+| "Investment risk disclosure" | LEGIT | LEGIT | 92.1% | ✓ |
 
 ## How to Run
 
