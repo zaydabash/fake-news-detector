@@ -105,7 +105,7 @@ security:
 	. venv/bin/activate && pip install bandit safety || true
 	. venv/bin/activate && bandit -r src -ll || true
 	. venv/bin/activate && safety check || true
-	. venv/bin/activate && python -m pytest tests/test_security.py -v
+	. venv/bin/activate && python -m pytest tests/test_security.py -v --no-cov
 
 # Clean artifacts
 clean:

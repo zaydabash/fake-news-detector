@@ -35,55 +35,62 @@ class TestNicheModelTrainer:
     
     def test_initialization(self):
         """Test trainer initialization."""
+        config = {
+            'min_samples_per_class': 10,
+            'max_features': 1000,
+            'min_df': 2
+        }
         trainer = NicheModelTrainer(
             niche='test_niche',
-            vectorizer=Mock(),
+            config=config,
             random_state=42
         )
         assert trainer.niche == 'test_niche'
         assert trainer.random_state == 42
+        assert trainer.config == config
     
     @patch('src.models.train_niche.LogisticRegression')
     @patch('src.models.train_niche.LinearSVC')
-    def test_train_models(self, mock_svm, mock_lr, sample_data):
+    @patch('src.models.train_niche.cross_val_score')
+    def test_train_models(self, mock_cv, mock_svm, mock_lr, sample_data):
         """Test model training."""
-        mock_vectorizer = Mock()
-        mock_vectorizer.transform.return_value = np.random.rand(6, 10)
-        mock_vectorizer.label_encoder.transform.return_value = [0, 1, 0, 1, 0, 1]
+        config = {
+            'min_samples_per_class': 10,
+            'max_features': 1000,
+            'min_df': 2
+        }
         
         mock_lr_model = Mock()
         mock_lr_model.fit.return_value = None
+        mock_lr_model.score.return_value = 0.95
         mock_lr_model.predict.return_value = [0, 1, 0, 1, 0, 1]
-        mock_lr_model.predict_proba.return_value = np.array([
-            [0.8, 0.2],
-            [0.3, 0.7],
-            [0.9, 0.1],
-            [0.2, 0.8],
-            [0.85, 0.15],
-            [0.25, 0.75]
-        ])
         mock_lr.return_value = mock_lr_model
         
         mock_svm_model = Mock()
         mock_svm_model.fit.return_value = None
+        mock_svm_model.score.return_value = 0.93
         mock_svm_model.predict.return_value = [0, 1, 0, 1, 0, 1]
         mock_svm.return_value = mock_svm_model
         
+        # Mock cross-validation scores
+        mock_cv.return_value = np.array([0.9, 0.92, 0.91, 0.89, 0.93])
+        
         trainer = NicheModelTrainer(
             niche='test_niche',
-            vectorizer=mock_vectorizer,
+            config=config,
             random_state=42
         )
         
-        X_train = mock_vectorizer.transform(sample_data['text_processed'])
-        y_train = mock_vectorizer.label_encoder.transform(sample_data['label'])
-        X_test = X_train
-        y_test = y_train
+        X_train = np.random.rand(6, 10)
+        y_train = np.array([0, 1, 0, 1, 0, 1])
+        X_val = np.random.rand(2, 10)
+        y_val = np.array([0, 1])
         
-        models, metrics = trainer.train_models(X_train, y_train, X_test, y_test)
+        trainer.train_models(X_train, y_train, X_val, y_val)
         
-        assert 'logistic_regression' in models
-        assert 'svm' in models
-        assert 'accuracy' in metrics
-        assert 'macro_f1' in metrics
+        assert 'logistic_regression' in trainer.models
+        assert 'svm' in trainer.models
+        assert 'logistic_regression' in trainer.metrics
+        assert 'svm' in trainer.metrics
+        assert trainer.best_model is not None
 

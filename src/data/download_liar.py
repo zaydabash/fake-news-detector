@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 def download_file(url: str, filepath: Path) -> None:
     """Download a file with progress bar."""
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, timeout=30)
     total_size = int(response.headers.get('content-length', 0))
     
     with open(filepath, 'wb') as f, tqdm(

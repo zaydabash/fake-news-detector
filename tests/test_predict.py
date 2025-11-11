@@ -41,12 +41,15 @@ class TestFakeNewsPredictor:
         
         for i, text in enumerate(texts):
             result = mock_predictor.predict_text(text)
-            result['index'] = i
-            results.append(result)
+            result_copy = result.copy()
+            result_copy['index'] = i
+            results.append(result_copy)
         
         assert len(results) == len(texts)
         assert all('index' in result for result in results)
-        assert all(result['index'] == i for i, result in enumerate(results))
+        # Verify indices are correct
+        for i, result in enumerate(results):
+            assert result['index'] == i
     
     @patch('src.predict.cli.joblib.load')
     @patch('src.predict.cli.TFIDFFeatureExtractor.load')

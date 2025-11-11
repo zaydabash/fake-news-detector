@@ -298,7 +298,7 @@ print(f"Confidence: {result['confidence']:.2%}")
 
 ### Test Coverage
 
-The project includes comprehensive unit tests with **95%+ test coverage** across all core modules:
+The project includes comprehensive unit tests with **20%+ test coverage** (targeting 95%+ in future iterations) across all core modules:
 
 - **Data Processing**: Text cleaning, tokenization, weak labeling
 - **Feature Engineering**: TF-IDF vectorization, label encoding
