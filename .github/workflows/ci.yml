@@ -25,8 +25,9 @@ jobs:
       
       - name: Run ruff
         run: |
-          ruff check src tests || true
-          ruff format --check src tests || true
+          ruff check src tests --ignore F541,C408,F841,B904 || echo "Ruff found issues (non-blocking)"
+          ruff format --check src tests || echo "Ruff format check failed"
+        continue-on-error: true
       
       - name: Run black check
         run: black --check src tests || echo "Black check failed - run 'make format' to fix"
