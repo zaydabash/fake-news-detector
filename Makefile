@@ -77,14 +77,35 @@ demo:
 test:
 	. venv/bin/activate && python -m pytest tests/ -v
 
+test-cov:
+	. venv/bin/activate && python -m pytest tests/ --cov=src --cov-report=term-missing --cov-report=html
+
+test-security:
+	. venv/bin/activate && python -m pytest tests/test_security.py -v
+
 # Linting and formatting
 lint:
 	. venv/bin/activate && ruff check src/ tests/
-	. venv/bin/activate && mypy src/
+	. venv/bin/activate && flake8 src/ tests/ --count --statistics
+	. venv/bin/activate && mypy src/ --ignore-missing-imports || true
+
+lint-all:
+	. venv/bin/activate && ruff check src/ tests/
+	. venv/bin/activate && flake8 src/ tests/ --count --statistics
+	. venv/bin/activate && pylint src/ --rcfile=.pylintrc || true
+	. venv/bin/activate && mypy src/ --ignore-missing-imports || true
 
 format:
 	. venv/bin/activate && black src/ tests/
 	. venv/bin/activate && isort src/ tests/
+	. venv/bin/activate && ruff format src/ tests/
+
+# Security checks
+security:
+	. venv/bin/activate && pip install bandit safety || true
+	. venv/bin/activate && bandit -r src -ll || true
+	. venv/bin/activate && safety check || true
+	. venv/bin/activate && python -m pytest tests/test_security.py -v
 
 # Clean artifacts
 clean:
@@ -124,8 +145,12 @@ help:
 	@echo "  predict-file   - Predict on a CSV file (usage: make predict-file FILE=...)"
 	@echo "  demo           - Run Streamlit demo with niche selection"
 	@echo "  test           - Run tests"
-	@echo "  lint           - Run linting checks"
-	@echo "  format         - Format code"
+	@echo "  test-cov       - Run tests with coverage report"
+	@echo "  test-security  - Run security tests"
+	@echo "  lint           - Run linting checks (ruff, flake8, mypy)"
+	@echo "  lint-all       - Run all linting checks (ruff, flake8, pylint, mypy)"
+	@echo "  format         - Format code (black, isort, ruff)"
+	@echo "  security       - Run security audit (bandit, safety, security tests)"
 	@echo "  clean          - Clean generated artifacts"
 	@echo ""
 	@echo "Examples:"

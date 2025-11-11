@@ -1,0 +1,39 @@
+[MASTER]
+ignore=.venv,venv,.eggs,*.egg,build,dist,.mypy_cache,.pytest_cache,.tox,.ruff_cache
+init-hook='import sys; sys.path.append(".")'
+
+[MESSAGES CONTROL]
+disable=
+    missing-docstring,
+    too-few-public-methods,
+    too-many-arguments,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    import-error,
+    no-member
+
+[FORMAT]
+max-line-length=88
+indent-string='    '
+
+[BASIC]
+good-names=i,j,k,ex,Run,_,df,id,X,y
+
+[DESIGN]
+max-args=7
+max-locals=20
+max-returns=6
+max-branches=15
+max-statements=50
+max-parents=7
+max-attributes=10
+min-public-methods=1
+
+[IMPORTS]
+ignore-imports=yes
+
+[EXCEPTIONS]
+overgeneral-exceptions=Exception
+

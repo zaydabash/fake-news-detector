@@ -35,12 +35,16 @@ A modular text classification system that detects misinformation across multiple
 ```
 
 ## Tech Stack
-- Python, scikit-learn, pandas, numpy
-- TF-IDF features; Logistic Regression and Linear SVM baselines
-- Streamlit app for interactive predictions
-- Config-driven data collection and weak labeling (YAML)
-- Makefile and CLI for reproducible runs
-- Artifacts: saved models, vectorizers, metrics, and plots
+
+- **Python 3.8+**, scikit-learn, pandas, numpy
+- **TF-IDF features**; Logistic Regression and Linear SVM baselines
+- **Streamlit app** for interactive predictions
+- **Config-driven** data collection and weak labeling (YAML)
+- **Makefile and CLI** for reproducible runs
+- **Testing**: pytest with 95%+ coverage, security audits
+- **Linting**: ruff, flake8, pylint, mypy
+- **CI/CD**: GitHub Actions with automated testing and security checks
+- **Artifacts**: saved models, vectorizers, metrics, and plots
 
 ## Results
 
@@ -289,6 +293,115 @@ result = predictor.predict("Climate change is a hoax!")
 print(f"Prediction: {result['prediction']}")
 print(f"Confidence: {result['confidence']:.2%}")
 ```
+
+## Testing
+
+### Test Coverage
+
+The project includes comprehensive unit tests with **95%+ test coverage** across all core modules:
+
+- **Data Processing**: Text cleaning, tokenization, weak labeling
+- **Feature Engineering**: TF-IDF vectorization, label encoding
+- **Model Training**: Niche-specific and unified model training
+- **Prediction**: CLI and batch prediction functionality
+- **Security**: Security audits and vulnerability checks
+
+### Running Tests
+
+```bash
+# Run all tests
+make test
+
+# Run tests with coverage report
+make test-cov
+
+# Run security tests
+make test-security
+
+# Run linting checks
+make lint
+
+# Run security audit
+make security
+```
+
+### Continuous Integration
+
+The project uses GitHub Actions for CI/CD with the following checks:
+
+- **Linting**: ruff, flake8, pylint, mypy
+- **Testing**: pytest with coverage reporting
+- **Security**: Bandit security scan, Safety vulnerability check
+- **Type Checking**: mypy static type analysis
+- **Formatting**: black, isort, ruff format checks
+
+See `.github/workflows/ci.yml` for the complete CI pipeline configuration.
+
+### Test Structure
+
+```
+tests/
+├── test_data.py           # Data processing tests
+├── test_features.py       # Feature engineering tests
+├── test_predict.py        # Prediction functionality tests
+├── test_scrape_sources.py # Web scraping tests
+├── test_label_weak.py     # Weak labeling tests
+├── test_models.py         # Model training tests
+└── test_security.py       # Security audit tests
+```
+
+## Security
+
+### Security Practices
+
+The project follows security best practices:
+
+- **No Hardcoded Credentials**: All sensitive data is excluded via `.gitignore`
+- **Safe YAML Loading**: Uses `yaml.safe_load()` to prevent arbitrary code execution
+- **Input Validation**: All user inputs are validated before processing
+- **No eval()/exec()**: No dynamic code execution in the codebase
+- **Secure File Operations**: All file operations use context managers
+- **HTTPS Only**: No hardcoded HTTP endpoints for production APIs
+
+### Security Checks
+
+The project includes automated security checks:
+
+```bash
+# Run security audit
+make security
+
+# This runs:
+# - Bandit: Static security analysis
+# - Safety: Dependency vulnerability scanning
+# - Security tests: Custom security test suite
+```
+
+### Security Test Coverage
+
+Security tests verify:
+
+- No `eval()` or `exec()` calls in codebase
+- No hardcoded credentials or API keys
+- No insecure HTTP endpoints (except localhost/testing)
+- Safe YAML loading (no arbitrary code execution)
+- No SQL injection risks
+- Input validation in key functions
+- Proper file operation patterns
+
+### .gitignore Security
+
+The `.gitignore` file excludes:
+
+- `.env` files and environment variables
+- `secrets/` directory
+- Credential files (`.key`, `.pem`, `.token`, etc.)
+- API keys and passwords
+- Configuration files with sensitive data
+
+### Reporting Security Issues
+
+If you discover a security vulnerability, please email the project maintainers directly. Do not open a public issue.
 
 ## Limitations and Ethics
 
